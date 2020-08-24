@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href="img/favicon.png" type="image/png" />
+  <title>Ecommerce</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="vendors/linericon/style.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/themify-icons.css" />
+  <link rel="stylesheet" href="css/flaticon.css" />
+  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css" />
+  <link rel="stylesheet" href="vendors/lightbox/simpleLightbox.css" />
+  <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
+  <link rel="stylesheet" href="vendors/animate-css/animate.css" />
+  <link rel="stylesheet" href="vendors/jquery-ui/jquery-ui.css" />
+  <!-- main css -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+  <!--================Header Menu Area =================-->
+  <header class="header_area">
+    
+    <div class="main_menu">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <a class="navbar-brand logo_h" href="index.html">
+            <img src="img/logo.png" alt="" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse offset w-100" id="navbarSupportedContent">
+            <div class="row w-100 mr-0">
+              <div class="col-lg-7 pr-0">
+                <ul class="nav navbar-nav center_nav pull-right">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item submenu dropdown" id="RegistrazionePanel"> 
+                    <a class="nav-link" href="Registrazione.html">Registrazione</a>
+                  </li>
+                  <li class="nav-item" id="MioProfiloPanel">
+                    <a class="nav-link" href="MioProfilo.html">Il mio Profilo</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contatti</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-lg-5 pr-0">
+                <ul class="nav navbar-nav navbar-right right_nav pull-right">
+
+                  <li class="nav-item">
+                    <a href="#" class="icons">
+                      <i class="ti-shopping-cart"></i>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="Login.html" class="icons">
+                      <i id="iconLogin" class="ti-user" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!--================Header Menu Area =================-->
+
+  <!--================ Feature Product Area =================-->
+  <section class="feature_product_area section_gap_bottom_custom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="main_title">
+            <h2><span>Carrello</span></h2>
+          </div>
+        </div>
+      </div>
+	
+	    <!--================Cart Area =================-->
+	    <!--   
+    <section class="cart_area">
+      <div class="container">
+        <div class="cart_inner">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Prodotti</th>
+                  <th scope="col">Prezzo</th>
+                  <th scope="col">Quantità</th>
+                  <th scope="col">Totale</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="media">
+                      <div class="d-flex">
+                        <img
+                          src="img/product/single-product/cart-1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="media-body">
+                        <p>Minimalistic shop for multipurpose use</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$360.00</h5>
+                  </td>
+                  <td>
+                    <div class="product_count">
+                      <input
+                        type="text"
+                        name="qty"
+                        id="sst"
+                        maxlength="12"
+                        value="1"
+                        title="Quantity:"
+                        class="input-text qty"
+                      />
+                      <button
+                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                        class="increase items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-up"></i>
+                      </button>
+                      <button
+                        onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                        class="reduced items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-down"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$720.00</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="media">
+                      <div class="d-flex">
+                        <img
+                          src="img/product/single-product/cart-1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="media-body">
+                        <p>Minimalistic shop for multipurpose use</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$360.00</h5>
+                  </td>
+                  <td>
+                    <div class="product_count">
+                      <input
+                        type="text"
+                        name="qty"
+                        id="sst1"
+                        maxlength="12"
+                        value="1"
+                        title="Quantity:"
+                        class="input-text qty"
+                      />
+                      <button
+                        onclick="var result = document.getElementById('sst1'); var sst1 = result.value; if( !isNaN( sst1 )) result.value++;return false;"
+                        class="increase items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-up"></i>
+                      </button>
+                      <button
+                        onclick="var result = document.getElementById('sst1'); var sst1 = result.value; if( !isNaN( sst1 ) &amp;&amp; sst1 > 0 ) result.value--;return false;"
+                        class="reduced items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-down"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$720.00</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="media">
+                      <div class="d-flex">
+                        <img
+                          src="img/product/single-product/cart-1.jpg"
+                          alt=""
+                        />
+                      </div>
+                      <div class="media-body">
+                        <p>Minimalistic shop for multipurpose use</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$360.00</h5>
+                  </td>
+                  <td>
+                    <div class="product_count">
+                      <input
+                        type="text"
+                        name="qty"
+                        id="sst2"
+                        maxlength="12"
+                        value="1"
+                        title="Quantity:"
+                        class="input-text qty"
+                      />
+                      <button
+                        onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 )) result.value++;return false;"
+                        class="increase items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-up"></i>
+                      </button>
+                      <button
+                        onclick="var result = document.getElementById('sst2'); var sst2 = result.value; if( !isNaN( sst2 ) &amp;&amp; sst2 > 0 ) result.value--;return false;"
+                        class="reduced items-count"
+                        type="button"
+                      >
+                        <i class="lnr lnr-chevron-down"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$720.00</h5>
+                  </td>
+                </tr>
+                <tr class="bottom_button">
+                  
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <h5>Subtotale</h5>
+                  </td>
+                  <td>
+                    <h5>$2160.00</h5>
+                  </td>
+                </tr>
+               
+                <tr class="out_button_area">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <div class="checkout_btn_inner">
+                      
+                      <a class="main_btn" href="#">Procedi all'Ordine</a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    -->
+    <!--================End Cart Area =================-->
+      
+    </div>
+    
+  </section>
+  
+  <!--  nuovo -->
+  
+  <section class="feature_product_area section_gap_bottom_custom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="main_title">
+           
+            
+          </div>
+        </div>
+      </div>
+
+		<div id="loadCart"> 
+		
+		</div>
+      
+    </div>
+    
+  </section>
+  
+  
+  <!--================ End Feature Product Area =================-->
+
+  <!--================ start footer Area  =================-->
+  <footer class="footer-area section_gap">
+    <div class="container">
+      <div class="footer-bottom row align-items-center">
+        <p class="footer-text m-0 col-lg-8 col-md-12">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Angelo Montesarchio</i> 
+</p>
+        <div class="col-lg-4 col-md-12 footer-social">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-dribbble"></i></a>
+          <a href="#"><i class="fa fa-behance"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--================ End footer Area  =================-->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/stellar.js"></script>
+  <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+  <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+  <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+  <script src="vendors/isotope/isotope-min.js"></script>
+  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+  <script src="vendors/counter-up/jquery.counterup.js"></script>
+  <script src="js/mail-script.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/loader_info.js"></script>
+  
+</body>
+
+</html>

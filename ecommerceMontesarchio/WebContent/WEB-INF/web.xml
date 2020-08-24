@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>ecommerceMontesarchio</display-name>
+
+  
+  
+  <servlet>
+	<servlet-name>AllProdotti</servlet-name>
+    <servlet-class>app.AllProdotti</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>AllProdotti</servlet-name>
+  <url-pattern>/servlet/AllProdotti</url-pattern>
+ </servlet-mapping>
+
+ <servlet>
+	<servlet-name>AggiungiACarello</servlet-name>
+    <servlet-class>classes.AggiungiACarello</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>AggiungiACarello</servlet-name>
+  <url-pattern>/servlet/AggiungiACarello</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet>
+	<servlet-name>GetCart</servlet-name>
+    <servlet-class>classes.GetCart</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>GetCart</servlet-name>
+  <url-pattern>/servlet/GetCart</url-pattern>
+ </servlet-mapping>
+  
+
+ <servlet>
+	<servlet-name>SalvaUtente</servlet-name>
+    <servlet-class>app.SalvaUtente</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>SalvaUtente</servlet-name>
+  <url-pattern>/servlet/SalvaUtente</url-pattern>
+ </servlet-mapping>
+  
+   <servlet>
+	<servlet-name>Login</servlet-name>
+    <servlet-class>classes.Login</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>Login</servlet-name>
+  <url-pattern>/servlet/Login</url-pattern>
+ </servlet-mapping>
+ 
+    <servlet>
+	<servlet-name>isLogged</servlet-name>
+    <servlet-class>app.isLogged</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>isLogged</servlet-name>
+  <url-pattern>/servlet/isLogged</url-pattern>
+ </servlet-mapping>
+  
+  
+</web-app>
