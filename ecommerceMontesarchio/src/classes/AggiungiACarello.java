@@ -13,29 +13,30 @@ import org.json.JSONObject;
 
 import Database.DBConnection;
 import Database.ProdottoDaoJDBC;
-import Model.Carello;
+import Model.Carrello;
 import Model.Prodotto;
 
 public class AggiungiACarello extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
-				int idProduct = Integer.parseInt(req.getParameter("idProdotto"));
+				
+		int idProduct = Integer.parseInt(req.getParameter("idProdotto"));
 				System.out.println(idProduct);
 				DBConnection dbConnection = new DBConnection(); 
 				ProdottoDaoJDBC ProdDao = new ProdottoDaoJDBC(dbConnection);
 				Prodotto product = ProdDao.findByPrimaryKeyJoin(idProduct);
 		
 				System.out.println(product.getNome());
-				Carello cart = null;
+				Carrello cart = null;
 				
 				resp.setContentType("text/plain");
 				resp.setCharacterEncoding("UTF-8");
 				
 				HttpSession session = req.getSession(false);
 				if(session != null){
-					
-					cart = (Carello)session.getAttribute("Carrello");
+					System.out.println("SESSION");
+					cart = (Carrello)session.getAttribute("Carrello");
 
 					boolean presente = false;
 					for(int k=0; k < cart.size() && !presente; k++){

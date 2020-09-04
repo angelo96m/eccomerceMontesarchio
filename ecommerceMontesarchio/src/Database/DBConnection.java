@@ -22,7 +22,7 @@ public class DBConnection {
 		//this.Username = "Remote2"; FOR ONLINE SERVER
 		this.Username = "root";
 		//this.Password = "sparafra"; FOR ONLINE SERVER
-		this.Password = "00angelo0"; 
+		this.Password = "sparafra"; 
 	}
 	
 	public Connection getConnection(){

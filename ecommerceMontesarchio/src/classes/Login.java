@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import Database.DBConnection;
 import Database.NegozioDaoJDBC;
 import Database.UtenteDaoJDBC;
-import Model.Carello;
+import Model.Carrello;
 import Model.Negozio;
 import Model.Utente;
 
@@ -47,7 +47,7 @@ public class Login extends HttpServlet{
 					else if(user.getPassword().equals(Password)){
 											
 						session.setAttribute("UserLogged", user);
-						session.setAttribute("Carrello", new Carello());
+						session.setAttribute("Carrello", new Carrello());
 						session.setAttribute("Negozio", N);
 						JSONObject obj = new JSONObject();
 						obj.put("Stato", "Logged");

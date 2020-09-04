@@ -71,6 +71,12 @@ public void save(Ordine order) {
 			//serve in caso gli studenti non siano stati salvati. Il DAO studente apre e chiude una transazione nuova.
 			//connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);			
 			statement.executeUpdate();
+			
+			for(int k=0; k<order.getListProdotti().size(); k++)
+			{
+				saveOrderProduct((int)order.getIdOrdine(), order.getListProdotti().get(k).getIdProdotto(), order.getListProdotti().get(k).getQuantità());
+			}
+			
 			// salviamo anche tutti gli studenti del gruppo in CASACATA
 			//this.updateOrderProduct(order, connection);
 			//connection.commit();
@@ -99,7 +105,7 @@ public void saveOrderProduct(int idOrdine, int idProdotto, int Quantità)  {
 
 	try {
 
-		String query = "insert into dettagliordine(idProdotto, idOrdine, Quantità) values (?,?,?)";
+		String query = "insert into dettaglioordine(idProdotto, idOrdine, Quantità) values (?,?,?)";
 		PreparedStatement statementIscrivi = connection.prepareStatement(query);
 		statementIscrivi.setInt(1, idProdotto);
 		statementIscrivi.setLong(2, idOrdine);

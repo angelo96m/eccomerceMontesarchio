@@ -19,6 +19,13 @@ window.onload = function() {
 	else if(window.location.pathname == "/ecommerceMontesarchio/MioProfilo.html"){
 		loadInfoUser();
 	}
+	else if(window.location.pathname == "/ecommerceMontesarchio/cart.html"){
+		if(isLogged())
+		{
+			loadCart();
+
+		}
+	}
 };
 
 function isLogged()
@@ -326,63 +333,87 @@ function loadCart(){
         var context = ""; 
         $('#Cart').text("");
         var cont = 0; 
-for(var i=0; i<array.length; i++){
+        
+        for(var i=0; i<array.length; i++)
+        {
     		cont = cont + array[i].Prezzo; 
-    		context = context + "<tr>" +  
-           "<td>" +
-              "<div class='media'>" + 
-                "<div class='d-flex'>" + 
-                  "<img" +
-                    "src='img/product/single-product/cart-1.jpg'" + 
-                    "<p hidden id='idProdotto"+i+"'>"+array[i].idProdotto+"</p> " +
-                    "<img class='img-fluid w-100' src='" + array[i].ImgURL +
-                    "alt=''" +
-                 " />" +
-                "</div>" +
-                "<div class='media-body'>"+
-                 // "<p>Minimalistic shop for multipurpose use</p>" +
-                //"<a href='#' onclick='addCart(" + i + ") '>" +
-                "</div>"+
-              "</div>" +
-            "</td>" + 
-            "<td>" +
-              "<h5>" + array[i].Prezzo + "</h5>" +
-            "</td>" +
-            "<td>" + 
-              "<div class='product_count'>" +
-                "<input" +
-                  "type='text'" +
-                  "name='qty'" +
-                  "id='sst'" +
-                  "maxlength='12'" + 
-                  "value='1'" +
-                  "title='Quantity:'" + 
-                  "class='input-text qty'" +
-                "/>" + 
-                "<button" +
-                  "onclick='var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;'" +
-                  "class='increase items-count'" +
-                 "type='button'" +
-                ">"+
-                  "<i class='lnr lnr-chevron-up'></i>" +
-                "</button>" +
-                "<button" +
-                  "onclick='var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;'" +
-                  "class='reduced items-count'" +
-                  "type='button'"+
-                ">" +
-                  "<i class='lnr lnr-chevron-down'></i>" +
-                "</button>" +
-              "</div>" +
-            "</td>" +
-            "<td>" +
-              "<h5>" + cont + "</h5>" +
-            "</td>" +
-          "</tr>"
+    		context = context + "<tr> " +
+						            "<td> " +
+						            "<div class='media'> " +
+						              "<div class='d-flex'> " +
+						                "<img " +
+						                  "src= '" + array[i].ImageURL +"' alt='' width='150px' "+
+						                "/> "+
+						              "</div> "+
+						              "<div class='media-body'> "+
+						                "<p>"+ array[i].Nome + "</p> "+
+						              "</div> "+
+						            "</div> "+
+						          "</td> "+
+						          "<td> "+
+						            "<h5>€"+ array[i].Prezzo +"</h5> "+
+						          "</td> "+
+						          "<td> "+
+						            "<div class='product_count'> "+
+						              "<input "+
+						                "type='text' "+
+						                "name='qty' "+
+						                "id='sst"+ array[i].idProdotto +"' "+
+						                "maxlength='12' "+
+						                "value='"+ array[i].Quantità +"' "+
+						                "title='Quantity:' "+
+						                "class='input-text qty' "+
+						              "/> "+
+						              "<button "+
+						                "onclick='IncreaseQuantityProduct("+ array[i].idProdotto + ")' "+
+						                "class='increase items-count' "+
+						                "type='button' "+
+						              "> "+
+						                "<i class='lnr lnr-chevron-up'>+</i> "+
+						              "</button> "+
+						              "<button "+
+						                "onclick= 'DecreaseQuantityProduct("+ array[i].idProdotto +")' "+
+						                "class='reduced items-count' "+
+						                "type='button' "+
+						              "> "+
+						                "<i class='lnr lnr-chevron-down'>-</i> "+
+						              "</button> "+
+						            "</div> "+
+						          "</td> "+
+						          "<td> "+
+						            "<h5>€"+ array[i].Quantità * array[i].Prezzo +"</h5> "+
+						          "</td> "+
+						        "</tr> ";
     		
     		
     		
     	}
+        
+        context = context + "<tr class='bottom_button'>"+
+        
+			        "</tr>"+
+			        "<tr>"+
+			          "<td></td>"+
+			          "<td></td>"+
+			          "<td>"+
+			            "<h5>Subtotale</h5>"+
+			          "</td>"+
+			          "<td>"+
+			            "<h5>€"+ cont +"</h5>"+
+			          "</td>"+
+			        "</tr>"+
+			       
+			        "<tr class='out_button_area'>"+
+			          "<td></td>"+
+			          "<td></td>"+
+			          "<td></td>"+
+			          "<td>"+
+			            "<div class='checkout_btn_inner'>"+
+			              
+			              "<a class='main_btn' onclick='addOrder()' >Procedi all'Ordine</a>"+
+			            "</div>"+
+			          "</td>"+
+			        "</tr>";
         
         	
        
@@ -390,4 +421,59 @@ for(var i=0; i<array.length; i++){
    $('#Cart').append(context);
         
     });
+}
+
+
+function addOrder()
+{
+	alert("halo");
+	return $.get("/ecommerceMontesarchio/servlet/SalvaOrdine", function(data) {
+		alert(data);
+		
+		if(data == "Ok")
+		{
+			alert("Ordine effettuato con successo");
+			//loadCart();
+			
+			//REDIRECT TO ORDER SECTION
+			//window.location.replace("/Restaurant/MyAccount.html");
+		}
+	});
+
+}
+
+function IncreaseQuantityProduct(id)
+{
+	return $.get("/ecommerceMontesarchio/servlet/IncreaseQuantityProduct?idProduct=" + id, function(data) {
+		
+		loadCart();
+			if(data == "Ok")
+			{
+				$('#sst'+id).val($('#sst'+id).val + 1 );
+				return true;
+			}
+			else
+				return false;
+												
+	});
+}
+
+function DecreaseQuantityProduct(id)
+{
+	return $.get("/ecommerceMontesarchio/servlet/DecreaseQuantityProduct?idProduct=" + id, function(data) {
+		
+		loadCart();
+			if(data == "Ok")
+			{
+				$('#sst'+id).val($('#sst'+id).val - 1 );
+				return true;
+			}
+			else if(data == "Removed")
+			{
+				window.location.replace("/ecommerceMontesarchio/index.html");
+			}
+			else
+				return false;
+												
+	});
 }

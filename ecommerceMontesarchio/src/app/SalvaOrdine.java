@@ -3,16 +3,19 @@ package app;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Database.DBConnection;
 import Database.OrdineDaoJDBC;
 import Database.UtenteDaoJDBC;
+import Model.Carrello;
 import Model.Ordine;
 import Model.Utente;
 
@@ -30,49 +33,51 @@ public class SalvaOrdine extends HttpServlet {
 			HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		int idNegozio = Integer.parseInt(req.getParameter("idNegozio")); //mettere solo 1
-		String Nickname = req.getParameter("Nickname");
-		float Prezzo = Float.valueOf(req.getParameter("Prezzo"));
-		String DateTime = req.getParameter("DataOra");
 		
-		DBConnection dbConnection = new DBConnection(); 
-		OrdineDaoJDBC OrderDao = new OrdineDaoJDBC(dbConnection);
-		UtenteDaoJDBC UserDao = new UtenteDaoJDBC(dbConnection);
-		Utente user = UserDao.findByPrimaryKeyJoin(Nickname);
-
-		Ordine order = null;
 		resp.setContentType("text/plain");
 		resp.setCharacterEncoding("UTF-8");
 		
+		Utente user = null;
+		Carrello cart = null;
 		
-		Date date1 = null;
-		try {
-			date1 = (Date) new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(DateTime);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
+		HttpSession session = req.getSession(false);
+		if(session != null)
+		{
+			user = (Utente)session.getAttribute("UserLogged");
+			cart = (Carrello)session.getAttribute("Carrello");
+			
+			DBConnection dbConnection = new DBConnection(); 
+			OrdineDaoJDBC OrderDao = new OrdineDaoJDBC(dbConnection);
+			
+			Ordine order = null;
 
-			order = new Ordine();
-			
-			
-			order.setDataOra(date1);
-			order.setListProdotti(null);
-			//order.setIdNegozio(idNegozio);
-			
-			//order.setPrezzo(Prezzo);
-			
-			OrderDao.save(order);
-			
-			System.out.println(order.getIdOrdine());
-			
-			String Message = "Ordine effettuato con successo! \r\n" + "ID: " + order.getIdOrdine()+"\r\n"+ "Controlla lo stato: http://localhost:8080/Restaurant/MyAccount.html";
-			
-			/*
-			Email mail = new Email();
-			mail.Send(user.getMail(), "Ordine effettuato!", Message);
-			*/
-			resp.getWriter().write("Inserito \n" + order.getIdOrdine());
+			Date date1 = null;
+			try {
+				Date currentTime =  Calendar.getInstance().getTime();
+	            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	            String dateStr = date.format(currentTime);
+				date1 = (Date) new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateStr);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+
+				order = new Ordine();
+				
+				
+				order.setDataOra(date1);
+				order.setListProdotti(null);
+				order.setNickname(user.getNickname());
+				order.setListProdotti(cart.getListProducts());
+				
+				OrderDao.save(order);
+				
+				cart = null;
+				resp.getWriter().write("Ok");
+
+		}
+		
+		
 	
 			
 	}

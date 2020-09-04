@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Model.Carello;
+import Model.Carrello;
 
 public class GetCart extends HttpServlet{
 	@Override
@@ -19,7 +19,7 @@ public class GetCart extends HttpServlet{
 			HttpServletResponse resp) throws ServletException, IOException {
 	
 				
-				Carello cart = null;
+				Carrello cart = null;
 				
 				resp.setContentType("text/plain");
 				resp.setCharacterEncoding("UTF-8");
@@ -28,7 +28,7 @@ public class GetCart extends HttpServlet{
 				JSONArray jArray = new JSONArray();
 				
 				if(session != null){
-					cart = (Carello)session.getAttribute("Carello");
+					cart = (Carrello)session.getAttribute("Carrello");
 					
 					for(int k=0; k<cart.size(); k++){
 						JSONObject obj = new JSONObject();

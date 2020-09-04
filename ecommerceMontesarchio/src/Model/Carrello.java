@@ -5,9 +5,9 @@ import java.util.List;
 
 import 	Model.Prodotto;
 
-public class Carello {
+public class Carrello {
 	 List<Prodotto> listProducts;
-	    public Carello(){
+	    public Carrello(){
 	        listProducts = new ArrayList<>();
 	    }
 	    

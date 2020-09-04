@@ -8,6 +8,7 @@
 	<servlet-name>AllProdotti</servlet-name>
     <servlet-class>app.AllProdotti</servlet-class>
 </servlet>
+
  <servlet-mapping>
   <servlet-name>AllProdotti</servlet-name>
   <url-pattern>/servlet/AllProdotti</url-pattern>
@@ -31,6 +32,32 @@
   <url-pattern>/servlet/GetCart</url-pattern>
  </servlet-mapping>
   
+  <servlet>
+	<servlet-name>SalvaOrdine</servlet-name>
+    <servlet-class>app.SalvaOrdine</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>SalvaOrdine</servlet-name>
+  <url-pattern>/servlet/SalvaOrdine</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet>
+	<servlet-name>IncreaseQuantityProduct</servlet-name>
+    <servlet-class>classes.IncreaseQuantityProduct</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>IncreaseQuantityProduct</servlet-name>
+  <url-pattern>/servlet/IncreaseQuantityProduct</url-pattern>
+ </servlet-mapping>
+ 
+  <servlet>
+	<servlet-name>DecreaseQuantityProduct</servlet-name>
+    <servlet-class>classes.DecreaseQuantityProduct</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>DecreaseQuantityProduct</servlet-name>
+  <url-pattern>/servlet/DecreaseQuantityProduct</url-pattern>
+ </servlet-mapping>
 
  <servlet>
 	<servlet-name>SalvaUtente</servlet-name>
