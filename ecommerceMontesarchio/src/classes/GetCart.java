@@ -27,6 +27,7 @@ public class GetCart extends HttpServlet{
 				HttpSession session = req.getSession(false);
 				JSONArray jArray = new JSONArray();
 				
+				
 				if(session != null){
 					cart = (Carrello)session.getAttribute("Carrello");
 					

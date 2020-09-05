@@ -42,6 +42,15 @@
  </servlet-mapping>
  
  <servlet>
+	<servlet-name>Logout</servlet-name>
+    <servlet-class>classes.Logout</servlet-class>
+</servlet>
+ <servlet-mapping>
+  <servlet-name>Logout</servlet-name>
+  <url-pattern>/servlet/Logout</url-pattern>
+ </servlet-mapping>
+ 
+ <servlet>
 	<servlet-name>IncreaseQuantityProduct</servlet-name>
     <servlet-class>classes.IncreaseQuantityProduct</servlet-class>
 </servlet>

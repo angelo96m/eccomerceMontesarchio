@@ -209,19 +209,19 @@ function Login(){
 
 function Logout(){
 	
-	signOut();
-	$.get("/Ecommerce/servlet/Logout", function(data) {
-		$('#my-signin2').hide();
-		location.reload();
-	});
+	if ($('#iconLogin').hasClass('ti-shift-right')){
+		$('#iconLogin').removeClass('ti-shift-right'); 
+		$('#iconLogin').addClass('ti-user'); 
+
+		$.get("/ecommerceMontesarchio/servlet/Logout", function(data) {
+			$('#my-signin2').hide();
+
+			location.reload();
+		});
+	}
 }
 
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('Utente disconnesso.');
-    });
-}
+
 
 function showMenuForUser(){
 	$('#loadInfoLocal').hide();
@@ -232,6 +232,7 @@ function showMenuForUser(){
 	if ($('#iconLogin').hasClass('ti-user')){
 		$('#iconLogin').removeClass('ti-user'); 
 		$('#iconLogin').addClass('ti-shift-right'); 
+
 	}
 	
 }
@@ -242,6 +243,11 @@ function hideMenuForUser(){
 	$('#RegistrazionePanel').show();
 	$('#MioProfiloPanel').hide();
 
+	if ($('#iconLogin').hasClass('ti-shift-right')){
+		$('#iconLogin').removeClass('ti-shift-right'); 
+		$('#iconLogin').addClass('ti-user'); 
+
+	}
 	
 	
 }
