@@ -302,8 +302,9 @@ function loadInfoLocal(){
 	                "<h4> " + array[j].Nome + " </h4>" +
 	              "</a>" + 
 	              "<div class='mt-3'>" +
-	                "<span class='mr-4'> " + array[j].Prezzo +  "</span>" +
-	                "<del>  "+ (array[j].Prezzo+15) + " </del>" +
+	                "<span class='mr-4'> " + array[j].Prezzo +'€' + "</span>" +
+	                "<del>  "+ (array[j].Prezzo+15 +'€') + " </del>" +
+	                "<div>  "+ (array[j].Descrizione) + " </div>" +
 	              "</div>" +
 	            "</div>" +
 	          "</div></div>";
@@ -342,7 +343,7 @@ function loadCart(){
         
         for(var i=0; i<array.length; i++)
         {
-    		cont = cont + array[i].Prezzo; 
+    		//cont = cont + array[i].Prezzo; 
     		context = context + "<tr> " +
 						            "<td> " +
 						            "<div class='media'> " +
@@ -390,7 +391,7 @@ function loadCart(){
 						            "<h5>€"+ array[i].Quantità * array[i].Prezzo +"</h5> "+
 						          "</td> "+
 						        "</tr> ";
-    		
+    		cont += array[i].Quantità * array[i].Prezzo; 
     		
     		
     	}
@@ -432,9 +433,9 @@ function loadCart(){
 
 function addOrder()
 {
-	alert("halo");
+	//alert("halo");
 	return $.get("/ecommerceMontesarchio/servlet/SalvaOrdine", function(data) {
-		alert(data);
+		//alert(data);
 		
 		if(data == "Ok")
 		{
