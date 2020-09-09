@@ -46,7 +46,7 @@ public class Login extends HttpServlet{
 					}
 					else if(user.getPassword().equals(Password)){
 											
-						session.setAttribute("UserLogged", user);
+						session.setAttribute("UserLogged", user); //stringa - valore 
 						session.setAttribute("Carrello", new Carrello());
 						session.setAttribute("Negozio", N);
 						JSONObject obj = new JSONObject();

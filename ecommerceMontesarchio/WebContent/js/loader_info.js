@@ -445,6 +445,10 @@ function addOrder()
 			//REDIRECT TO ORDER SECTION
 			//window.location.replace("/Restaurant/MyAccount.html");
 		}
+		else
+		{
+			alert("Il prodotto con nome: " + data + " è esaurito. ");
+		}
 	});
 
 }

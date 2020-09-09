@@ -50,7 +50,7 @@ public class AggiungiACarello extends HttpServlet{
 					if(!presente){
 						product.setQuantità(1);
 						cart.addProdotto(product);
-						System.out.println("sssddwdw");
+						//System.out.println("sssddwdw");
 					}
 					
 					

@@ -64,16 +64,32 @@ public class SalvaOrdine extends HttpServlet {
 
 				order = new Ordine();
 				
-				
-				order.setDataOra(date1);
-				order.setListProdotti(null);
-				order.setNickname(user.getNickname());
-				order.setListProdotti(cart.getListProducts());
-				
-				OrderDao.save(order);
-				
-				cart = null;
-				resp.getWriter().write("Ok");
+				boolean prodottoEsaurito = false;
+				String NomeProdottoE = "";
+				for(int k =0; k < cart.getListProducts().size() && !prodottoEsaurito; k++)
+				{
+					if(cart.getListProducts().get(k).getQuantità() > 15)
+					{
+						prodottoEsaurito = true;
+						NomeProdottoE = cart.getListProducts().get(k).getNome();
+						System.out.println(NomeProdottoE + " ESAURITO" );
+					}
+				}
+				if(!prodottoEsaurito)
+				{
+					order.setDataOra(date1);
+					order.setListProdotti(null);
+					order.setNickname(user.getNickname());
+					order.setListProdotti(cart.getListProducts());
+					
+					OrderDao.save(order);
+					
+					session.setAttribute("Carrello", new Carrello());
+					
+					resp.getWriter().write("Ok");
+				}
+				else
+					resp.getWriter().write(NomeProdottoE);
 
 		}
 		

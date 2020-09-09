@@ -128,11 +128,6 @@ public void update(Utente user) {
 	
 } 
 
-public void delete(Utente user) { 
-	//fare questo metodo 
-}
-
-
 public List<Utente> findAll() {
 	Connection connection = this.dbConnection.getConnection();
 	List<Utente> list = null;
