@@ -17,6 +17,9 @@ import Model.Carrello;
 import Model.Negozio;
 import Model.Utente;
 
+/*
+ * In questa servlet viene avviata la sessione. 
+ */
 public class Login extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, 

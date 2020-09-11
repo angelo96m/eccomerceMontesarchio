@@ -12,7 +12,9 @@ import java.util.List;
 import Database.DBConnection;
 
 /*
- * Classe Utente Dao dove ci sono i metodi per svolgere le query sul DB. 
+ * Classe Utente Dao dove ci sono i metodi per svolgere le query sul DB.
+ * Questa classe è intermedia tra il DB e le servlet. 
+ * Tutti i metodi usati per scrivere e leggere su db.
  * 
  */
 public class UtenteDaoJDBC extends Utente {
@@ -20,7 +22,7 @@ public class UtenteDaoJDBC extends Utente {
 
 	public UtenteDaoJDBC(DBConnection dbConnection) {
 		this.dbConnection = dbConnection;
-	}//costruttore, instaura la connessione con il DB. ? 
+	}//costruttore, instaura la connessione con il DB.
 	
 public void save(Utente user) {
 		

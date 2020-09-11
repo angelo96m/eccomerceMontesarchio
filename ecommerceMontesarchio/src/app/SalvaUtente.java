@@ -37,7 +37,35 @@ public class SalvaUtente extends HttpServlet{
 				Persona persona = null ;
 				Utente user = null;
 				
-				HttpSession session = req.getSession(false);
+				resp.setContentType("text/plain");
+				resp.setCharacterEncoding("UTF-8");
+				
+				user = new Utente();
+				persona = new Persona();
+				
+				
+				persona.setCodiceFiscale(CodiceFiscale);
+				persona.setNome(Nome);
+				persona.setCognome(Cognome);
+				persona.setVia(Via); 
+				
+				user.setNickname(Nickname); 
+				user.setPassword(Password);
+				user.setMail(Mail);
+				user.setIdNegozio(idNegozio);
+				user.setCodiceFiscale(CodiceFiscale);
+				
+				PersonaDao.save(persona);
+				UserDao.save(user);
+				System.out.println("fine");
+				
+				resp.getWriter().write("Ok");
+				
+				/*
+				 * Verifica se un utente è loggato, fa fare le modifiche al profilo utente,
+				 * se non è già loggato fa registrare un nuovo utente. 
+				 */
+			/*	HttpSession session = req.getSession(false);
 				if(session != null)
 					user = (Utente)session.getAttribute("UserLogged");
 				
@@ -85,7 +113,7 @@ public class SalvaUtente extends HttpServlet{
 				
 					
 				resp.getWriter().write("Ok");
-		
+		*/
 			
 		
 	}

@@ -17,6 +17,8 @@ import Database.DBConnection;
 
 /*
  * Classe Prodotto Dao dove ci sono i metodi per svolgere le query sul DB. 
+ *  * Questa classe è intermedia tra il DB e le servlet. 
+ * Tutti i metodi usati per scrivere e leggere su db.
  * 
  */
 public class ProdottoDaoJDBC extends Prodotto {
@@ -42,13 +44,7 @@ public void save(Prodotto product) {
 			statement.setString(5, product.getCategoria());
 			statement.setString(6, product.getImgURL());
 
-			//connection.setAutoCommit(false);
-			//serve in caso gli studenti non siano stati salvati. Il DAO studente apre e chiude una transazione nuova.
-			//connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);			
-			statement.executeUpdate();
-			// salviamo anche tutti gli studenti del gruppo in CASACATA
-		
-			//connection.commit();
+			
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
@@ -82,13 +78,7 @@ public Prodotto saveProdotto (Prodotto product) {
 		statement.setString(5, product.getCategoria());
 		statement.setString(6, product.getImgURL());
 
-		//connection.setAutoCommit(false);
-		//serve in caso gli studenti non siano stati salvati. Il DAO studente apre e chiude una transazione nuova.
-		//connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);			
-		statement.executeUpdate();
-		// salviamo anche tutti gli studenti del gruppo in CASACATA
-	
-		//connection.commit();
+		
 	} catch (SQLException e) {
 		if (connection != null) {
 			try {

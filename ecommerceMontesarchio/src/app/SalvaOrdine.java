@@ -22,10 +22,7 @@ import Model.Utente;
 
 
 
-/*
- * controllare bene questa classe... 
- * forse ci sono errori... 
- */
+
 public class SalvaOrdine extends HttpServlet {
 	
 	@Override

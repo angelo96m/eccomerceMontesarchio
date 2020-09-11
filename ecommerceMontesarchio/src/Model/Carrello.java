@@ -5,6 +5,10 @@ import java.util.List;
 
 import 	Model.Prodotto;
 
+/*
+ * Classe Carrello, ha una lista di prodotti.
+ * La classe contiene i vari metodi per la gestione del carrello.
+*/
 public class Carrello {
 	 List<Prodotto> listProducts;
 	    public Carrello(){

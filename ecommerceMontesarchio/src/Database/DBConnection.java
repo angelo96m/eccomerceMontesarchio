@@ -2,7 +2,9 @@ package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+/*
+ * Classe che stabilisce la connessione con il DB. 
+ */
 public class DBConnection {
 
 	String dbURI;
@@ -16,12 +18,10 @@ public class DBConnection {
 	} 
 	
 	public DBConnection(){
-		//this.dbURI = "jdbc:mysql://remotemysql.com:3306/kZEBaP1qWY?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		
 		this.dbURI = "jdbc:mysql://localhost:3306/ecommerce?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		//this.dbURI = "jdbc:mysql://212.237.3.25:3306/ristorante?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		//this.Username = "Remote2"; FOR ONLINE SERVER
+		
 		this.Username = "root";
-		//this.Password = "sparafra"; FOR ONLINE SERVER
 		this.Password = "00angelo0"; 
 	}
 	

@@ -19,6 +19,8 @@ import Database.PersistenceException;
 
 /*
  * Classe Ordine Dao dove ci sono i metodi per svolgere le query sul DB. 
+ *  * Questa classe è intermedia tra il DB e le servlet. 
+ * Tutti i metodi usati per scrivere e leggere su db.
  * 
  */
 public class OrdineDaoJDBC extends Ordine{
@@ -30,11 +32,7 @@ public class OrdineDaoJDBC extends Ordine{
 	
 public void save(Ordine order) {
 		
-		/*
-		if ( (order.getListProducts() == null) 
-				|| order.getListProducts().isEmpty()){
-			throw new PersistenceException("Ordine non memorizzato: un ordine deve avere almeno un prodotto");
-		}*/
+		
 		Connection connection = this.dbConnection.getConnection();
 		try {
 			int id = IdBroker.getId(connection, "idOrdine", "ordine");
@@ -42,34 +40,15 @@ public void save(Ordine order) {
 			String insert = "insert into ordine(idOrdine, DataOra, Nickname) values (?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setLong(1, order.getIdOrdine());
-			//statement.setString(2, order.getStato());
-			//statement.setInt(3, 1);
-			//System.out.println(order.getAsporto());
 			
-			//if(order.getAsporto())
-			//	statement.setInt(3, 1);
-			//else
-			//	statement.setInt(3, 0);
-			
-			//statement.setString(4, order.getNumeroTelefono());
-			
-			
-			//Date currentTime = Calendar.getInstance().getTime();
             SimpleDateFormat datetime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             
-            //order.setDateTime(currentTime);
-            
+           
             statement.setString(2, datetime.format(order.getDataOra()));
-			statement.setString(3, order.getNickname()); //prima era setLong
-			//statement.setFloat(7, order.getTotaleCosto());
-			//if(order.getPagato())
-			//	statement.setInt(8, 1);
-			//else
-			//	statement.setInt(8, 0);
+			statement.setString(3, order.getNickname()); 
+			
             
-			//connection.setAutoCommit(false);
-			//serve in caso gli studenti non siano stati salvati. Il DAO studente apre e chiude una transazione nuova.
-			//connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);			
+				
 			statement.executeUpdate();
 			
 			for(int k=0; k<order.getListProdotti().size(); k++)
@@ -77,9 +56,7 @@ public void save(Ordine order) {
 				saveOrderProduct((int)order.getIdOrdine(), order.getListProdotti().get(k).getIdProdotto(), order.getListProdotti().get(k).getQuantità());
 			}
 			
-			// salviamo anche tutti gli studenti del gruppo in CASACATA
-			//this.updateOrderProduct(order, connection);
-			//connection.commit();
+			
 		} catch (SQLException e) {
 			if (connection != null) {
 				try {
@@ -127,7 +104,7 @@ public void saveOrderProduct(int idOrdine, int idProdotto, int Quantità)  {
 		}
 	}
 	
-}
+}//saveOrderProduct
 
 @SuppressWarnings("unused")
 private void updateOrderProduct(Ordine order, Connection connection) throws SQLException {
@@ -144,7 +121,7 @@ private void updateOrderProduct(Ordine order, Connection connection) throws SQLE
 				statementIscrivi.executeUpdate();
 		}
 	}	
-}
+}//updateOrderProduct
 
 public void updateOrderProduct(int idOrdine, int idProdotto, int Quantità){
 	Connection connection = this.dbConnection.getConnection();
@@ -154,10 +131,9 @@ public void updateOrderProduct(int idOrdine, int idProdotto, int Quantità){
 		statement.setInt(1, Quantità);
 		statement.setLong(2, idOrdine);
 		statement.setInt(3, idProdotto);
-		//connection.setAutoCommit(false);
-		//connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);			
+			
 		statement.executeUpdate();
-		//connection.commit();
+		
 	} catch (SQLException e) {
 		if (connection != null) {
 			try {
@@ -175,9 +151,7 @@ public void updateOrderProduct(int idOrdine, int idProdotto, int Quantità){
 	}
 }
 
-/* 
- * versione con Join
- */
+
 public Ordine findByPrimaryKeyJoin(int id) {
 	
 	Connection connection = this.dbConnection.getConnection();
@@ -229,9 +203,7 @@ public Ordine findByPrimaryKeyJoin(int id) {
 					
 					product.setQuantità(res.getInt("Quantità"));
 					
-					//query = "SELECT ingrediente.idIngrediente, Nome, Costo " + 
-					//		"FROM ingrediente, prodottiingredienti " + 
-					//		"WHERE prodottiingredienti.idProdotto = ? AND ingrediente.idIngrediente = prodottiingredienti.idIngrediente";
+					
 					statement = connection.prepareStatement(query);
 					statement.setInt(1, (int) res.getLong("idProdotto"));
 					ResultSet res1 = statement.executeQuery();
@@ -268,10 +240,9 @@ public void update(Ordine order) {
 		
 		statement.setString(2, order.getNickname());
 		statement.setLong(3, order.getIdOrdine());
-		//connection.setAutoCommit(false);
-		//connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);			
+				
 		statement.executeUpdate();
-		//connection.commit();
+		
 	} catch (SQLException e) {
 		if (connection != null) {
 			try {
@@ -298,14 +269,14 @@ public void delete(int idOrdine) {
 		PreparedStatement statement = connection.prepareStatement(delete);
 		statement.setLong(1, idOrdine);
 		statement.executeUpdate();
-		//connection.commit();
+	
 		
 		delete = "delete FROM ordine WHERE idOrdine = ? ";
 		statement = connection.prepareStatement(delete);
 		statement.setLong(1, idOrdine);
 
 		statement.executeUpdate();
-		//connection.commit();
+	
 	} catch (SQLException e) {
 		throw new PersistenceException(e.getMessage());
 	} finally {
@@ -324,7 +295,7 @@ public void deleteOrderProduct(int idOrdine, int idProdotto){
 		PreparedStatement statement = connection.prepareStatement(delete);
 		statement.setLong(1, idOrdine);
 		statement.setInt(2, idProdotto);
-		//connection.commit();
+		
 		
 	} catch (SQLException e) {
 		throw new PersistenceException(e.getMessage());

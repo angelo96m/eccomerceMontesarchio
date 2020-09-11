@@ -31,7 +31,7 @@ public class ProdottoByCategoria extends HttpServlet {
 		
 		DBConnection dbConnection = new DBConnection(); 
 		ProdottoDaoJDBC ProdDao = new ProdottoDaoJDBC(dbConnection);
-		List<Prodotto> prodotti = (List<Prodotto>) ProdDao.findByPrimaryKeyJoin(idNegozio); //fatto il casting... 
+		List<Prodotto> prodotti = (List<Prodotto>) ProdDao.findByPrimaryKeyJoin(idNegozio); //fatto il casting 
 		
 		JSONArray jArray = new JSONArray();
 		
@@ -48,26 +48,7 @@ public class ProdottoByCategoria extends HttpServlet {
 				obj.put("ImageURL", prodotti.get(k).getImgURL());
 				obj.put("Quantità", prodotti.get(k).getQuantità());
 				
-				/*
-				JSONArray jArrayR = new JSONArray();
 				
-				for(int i=0; i<products.get(k).getListReview().size(); i++)
-				{
-					JSONObject objR = new JSONObject();
-					try
-					{
-						objR.put("idProdotto", products.get(k).getListReview().get(i).getIdProduct());
-						objR.put("NumeroTelefono", products.get(k).getListReview().get(i).getNumeroTelefono());
-						objR.put("Voto", products.get(k).getListReview().get(i).getVoto());
-						DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-						objR.put("DataOra", dateFormat.format(products.get(k).getListReview().get(i).getDataOra()));
-						jArrayR.put(objR);
-						
-					}catch(Exception e) {e.printStackTrace();}
-				}
-				obj.put("Reviews", jArrayR);
-				jArray.put(obj);
-				*/
 			}catch(Exception e) {e.printStackTrace();}
 		}
 		

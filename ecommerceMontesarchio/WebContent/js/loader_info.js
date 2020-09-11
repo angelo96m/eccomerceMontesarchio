@@ -20,16 +20,13 @@ window.onload = function() {
 		loadInfoUser();
 	}
 	else if(window.location.pathname == "/ecommerceMontesarchio/cart.html"){
-		if(isLogged())
-		{
+		if(isLogged()){
 			loadCart();
-
 		}
 	}
 };
 
-function isLogged()
-{
+function isLogged(){
 	
 	var resultbool = false;
 	$.ajax({
@@ -41,8 +38,7 @@ function isLogged()
     		
             //alert(result);
 
-            if(data != "Not Logged")
-    		{
+            if(data != "Not Logged"){
     			var obj = JSON.parse(data);
     			//$("#WelcomeMessage").text("Benvenuto " + obj.Nome + " " + obj.Cognome);
     			//$("#WelcomeMessage").append("<a href='index.html' class='text-uppercase' onclick='Logout();'> Exit</a>");
@@ -50,8 +46,7 @@ function isLogged()
     			//showMenuForUser();
     			resultbool = true;
     		}
-    		else
-    		{		
+    		else{		
     			//$('#my-signin2').show();
     			resultbool = false;
     		}
@@ -73,26 +68,10 @@ function registraUser(){
 	var CodiceFiscale = $('#CodiceFiscale').val();
 		
 	
-	//$('#return-msg').addClass('show-return-msg');
-	/*
-	$('.return-msg').on('click', function(e) {
-		$(this).removeClass('show-return-msg');
-	}); 
-	*/
 	if(Nome != "" && Cognome != ""  && Password != "" && ConfermaPassword != "" && Mail != "" && Via != "" && Nickname != "" && CodiceFiscale !="")
 	{
 		var indirizzo = Via;
 		
-		/*
-		alert(Nome); 
-		alert(Cognome); 
-		alert(Password); 
-		alert(ConfermaPassword); 
-		alert(Mail); 
-		alert(Via); 
-		alert(Nickname); 
-		alert(CodiceFiscale); 
-		*/
 		
 		$.get("/ecommerceMontesarchio/servlet/SalvaUtente?Nome=" + Nome + "&Cognome=" + Cognome + "&Password="+ Password 
 				+"&Mail=" + Mail + "&Via=" + Via + "&Nickname=" + Nickname + "&CodiceFiscale=" + CodiceFiscale , function(data) {
@@ -225,7 +204,7 @@ function Logout(){
 
 function showMenuForUser(){
 	$('#loadInfoLocal').hide();
-	//come mettere?
+	
 	$('#RegistrazionePanel').hide();
 	$('#MioProfiloPanel').show();
 	
@@ -239,7 +218,7 @@ function showMenuForUser(){
 
 function hideMenuForUser(){
 	$('#loadInfoLocal').hide();
-	//come mettere?
+	
 	$('#RegistrazionePanel').show();
 	$('#MioProfiloPanel').hide();
 
@@ -431,35 +410,27 @@ function loadCart(){
 }
 
 
-function addOrder()
-{
+function addOrder(){
 	//alert("halo");
 	return $.get("/ecommerceMontesarchio/servlet/SalvaOrdine", function(data) {
 		//alert(data);
 		
-		if(data == "Ok")
-		{
+		if(data == "Ok"){
 			alert("Ordine effettuato con successo");
-			//loadCart();
 			
-			//REDIRECT TO ORDER SECTION
-			//window.location.replace("/Restaurant/MyAccount.html");
 		}
-		else
-		{
-			alert("Il prodotto con nome: " + data + " è esaurito. ");
+		else{
+			alert("Il prodotto con nome: " + data + " è esaurito. Massimo 15 prodotti sono disponibili. ");
 		}
 	});
 
 }
 
-function IncreaseQuantityProduct(id)
-{
+function IncreaseQuantityProduct(id){
 	return $.get("/ecommerceMontesarchio/servlet/IncreaseQuantityProduct?idProduct=" + id, function(data) {
 		
 		loadCart();
-			if(data == "Ok")
-			{
+			if(data == "Ok"){
 				$('#sst'+id).val($('#sst'+id).val + 1 );
 				return true;
 			}
@@ -469,18 +440,15 @@ function IncreaseQuantityProduct(id)
 	});
 }
 
-function DecreaseQuantityProduct(id)
-{
+function DecreaseQuantityProduct(id){
 	return $.get("/ecommerceMontesarchio/servlet/DecreaseQuantityProduct?idProduct=" + id, function(data) {
 		
 		loadCart();
-			if(data == "Ok")
-			{
+			if(data == "Ok"){
 				$('#sst'+id).val($('#sst'+id).val - 1 );
 				return true;
 			}
-			else if(data == "Removed")
-			{
+			else if(data == "Removed"){
 				window.location.replace("/ecommerceMontesarchio/index.html");
 			}
 			else

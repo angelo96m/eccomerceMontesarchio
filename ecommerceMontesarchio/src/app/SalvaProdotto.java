@@ -18,7 +18,7 @@ public class SalvaProdotto  extends HttpServlet {
 	
 				String Nome = req.getParameter("Nome");
 				Float Prezzo = Float.valueOf(req.getParameter("Prezzo"));
-				//Long idLocale = Long.valueOf(req.getParameter("idLocale"));
+				
 				String Categoria = req.getParameter("Categoria");
 				String ImgURL = req.getParameter("ImgURL");
 				
@@ -30,7 +30,7 @@ public class SalvaProdotto  extends HttpServlet {
 				resp.setCharacterEncoding("UTF-8");
 				
 				prodotto = new Prodotto();
-				//prodotto.setIdLocale(idLocale);
+				
 				prodotto.setImgURL(ImgURL);
 				
 				prodotto.setNome(Nome);

@@ -2,7 +2,8 @@ package Model;
 
 /*
  * Classe Prodotto, ha le variabili uguali agli attributi 
- * presenti nel Database. Per ogni variabile ha i metodi get/set.
+ * presenti nel Database (più altre variabili e metodi aggiuntivi). 
+ * Per ogni variabile ha i metodi get/set.
  */
 
 public class Prodotto {

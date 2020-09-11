@@ -25,8 +25,7 @@ public class AllProdotti extends HttpServlet {
 	protected void doGet(HttpServletRequest req, 
 			HttpServletResponse resp) throws ServletException, IOException {
 	
-				//Long idLocal = (long) 1;
-				//int idProdotto = Integer.parseInt(req.getParameter("idProdotto"));
+				
 
 				resp.setContentType("text/plain");
 				resp.setCharacterEncoding("UTF-8");
