@@ -1,5 +1,5 @@
 # eccomerceMontesarchio
-Il progetto di Eccomerce è stato realizzato per l'esame di Piattaforme Web. 
+Il progetto di Eccomerce è stato realizzato per l'esame di Piattaforme Web, dipartimento: DIMES, Unical. 
 
 Le tecnologie utilizzate sono state: 
 Database: MySql 
